@@ -79882,6 +79882,13 @@ function saveCache() {
             }
             catch (e) {
                 core.info("Save s3 cache failed: " + e.message);
+                core.info("Save s3 cache failed: " + e.toString());
+                core.debug(`Full error: ${JSON.stringify({
+                    name: e.name,
+                    message: e.message,
+                    stack: e.stack,
+                    props: JSON.stringify(e),
+                })}`);
                 if (useFallback) {
                     if (utils_1.isGhes()) {
                         core.warning("Cache fallback is not supported on Github Enterpise.");
